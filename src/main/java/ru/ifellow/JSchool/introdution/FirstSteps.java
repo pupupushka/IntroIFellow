@@ -10,27 +10,31 @@ public class FirstStep {
     }
 
     public int div (int x, int y) {
-        return y != 0 ? x / y : 0;
+        return x / y;
     }
 
     public int mod (int x, int y) {
-        return y != 0 ? x % y : 0;
+        return x % y;
     }
 
     public boolean isEqual (int x, int y) {
-        return x == y ? true : false;
+        return x == y;
 
     }
 
     public boolean isGreater (int x, int y) {
-        return x > y ? true : false;
+        return x > y;
     }
 
     public boolean isInsideRect(int xLeft, int yTop, int xRight, int yBottom, int x, int y) {
-        return x >= xLeft && x <= xRight && y >= yTop && y <= yBottom ? true : false;
+        return x >= xLeft && x <= xRight && y >= yTop && y <= yBottom;
     }
 
     public int sum(int[] array) {
+
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
 
         int res = 0;
         for (int i = 0; i < array.length; i++) {
@@ -40,6 +44,10 @@ public class FirstStep {
     }
 
     public int mul(int[] array) {
+
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
 
         int res = 1;
         if (array.length == 0) {
@@ -54,6 +62,10 @@ public class FirstStep {
 
     public int min(int[] array) {
 
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
+
         int min = Integer.MAX_VALUE;
         for (int i = 0; i < array.length; i++) {
             if (array[i] < min) {
@@ -64,6 +76,11 @@ public class FirstStep {
     }
 
     public int max(int[] array) {
+
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
+
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < array.length; i++) {
             if (array[i] > max) {
@@ -76,15 +93,18 @@ public class FirstStep {
 
     public double average(int[] array) {
 
-        double res = 0.0;
-        for (int i = 0; i < array.length; i++) {
-            res += array[i];
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
         }
 
-        return array.length > 0 ? res / array.length : 0.0;
+        return array.length != 0 ? (double) sum(array) / array.length : 0;
     }
 
     public boolean isSortedDescendant(int[] array) {
+
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
 
         boolean flag = true;
         for (int i = 0; i < array.length - 1; i++) {
@@ -98,24 +118,39 @@ public class FirstStep {
 
     public void cube(int[]array) {
 
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
+
         for (int i = 0; i < array.length; i++) {
-            array[i] = array[i] * array[i] * array[i];
+            if (array[i] < 1291 && array[i] > -1291) {
+                array[i] = array[i] * array[i] * array[i];
+            } else {
+                throw new ArithmeticException("Обратите внимание на число");
+            }
         }
     }
 
     public boolean find(int[]array, int value) {
 
-        boolean res = false;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] == value) {
-                res = true;
-                break;
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
+
+        for(int el : array) {
+            if (el == value) {
+                return true;
             }
         }
-        return res;
+        return false;
     }
 
     public void reverse(int[]array) {
+
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
+
         int[] rev_array = new int[array.length];
 
         for (int i = 0; i < array.length; i++) {
@@ -124,6 +159,10 @@ public class FirstStep {
     }
 
     public boolean isPalindrome(int[]array) {
+
+        if (array == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
 
         boolean flag = true;
         for (int i = 0; i < array.length; i++) {
@@ -137,16 +176,22 @@ public class FirstStep {
 
     public int sum(int[][] matrix) {
 
+        if (matrix == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
+
         int sum = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                sum += matrix[i][j];
-            }
+        for (int[] row : matrix) {
+            sum += sum(row);
         }
         return sum;
     }
 
     public int max(int[][] matrix) {
+
+        if (matrix == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
 
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < matrix.length; i++) {
@@ -161,20 +206,24 @@ public class FirstStep {
 
     public int diagonalMax(int[][] matrix) {
 
+        if (matrix == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
+
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (i == j) {
-                    if (matrix[i][j] > max) {
-                        max = matrix[i][j];
-                    }
-                }
+            if (matrix[i][i] > max) {
+                max = matrix[i][i];
             }
         }
         return max;
     }
 
     public boolean isSortedDescendant(int[][] matrix) {
+
+        if (matrix == null) {
+            throw new NullPointerException("Передано некорректное значение");
+        }
 
         boolean flag = true;
         for (int i = 0; i < matrix.length; i++) {
